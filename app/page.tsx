@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Mail, Code2, LayoutTemplate, User, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
@@ -26,7 +26,8 @@ const GithubIcon = ({ size = 24, className = '' }) => (
 );
 
 export default function Home() {
-  const containerVariants = {
+  // Mendefinisikan tipe Variants agar TypeScript tidak error saat build
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -34,7 +35,7 @@ export default function Home() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
@@ -47,7 +48,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
       </div>
 
-      {/* Hero Section dengan FOTO (Lebih ke tengah karena tidak ada navbar atas) */}
+      {/* Hero Section dengan FOTO */}
       <section className="pt-32 pb-20 px-6 max-w-5xl mx-auto flex flex-col items-center text-center min-h-[90vh] justify-center">
         <motion.div
           initial="hidden"
@@ -64,6 +65,7 @@ export default function Home() {
                 src="/profile.jpeg"
                 alt="I Gusti Putu Bagus Sathya Pramerta"
                 fill
+                sizes="(max-width: 768px) 128px, 160px"
                 className="object-cover hover:scale-110 transition-transform duration-500"
                 priority
               />
@@ -271,7 +273,7 @@ export default function Home() {
         </p>
       </footer>
 
-      {/* --- FLOATING DOCK MENU (PENGGANTI NAVBAR) --- */}
+      {/* --- FLOATING DOCK MENU --- */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -313,7 +315,6 @@ export default function Home() {
           </a>
         </div>
       </motion.div>
-      {/* --- AKHIR FLOATING DOCK MENU --- */}
     </main>
   );
 }
